@@ -1,0 +1,18 @@
+Date: 31-10-2021
+
+This is just a journal for developing a cli programme called ledgerAccount which was requested by one of my friends.
+I am basically trying to make something useful out of my coding knowledge and this project can be seen as a practice project.
+
+Description:
+------------
+
+Just a programme to replace the physical ledger of the shops which keep the record of sales and expenditures of the shop.
+
+Expectations from the version 1 of this programme.
+---------------------------------------------------
+
+- keep record of sales.
+- keep record of money lent to any person with date and time (seperate accounts of customers should me made).
+- should be able to provide with the full detail of any customer's history.
+- should be able to comeup with the names of customers having dues in descending order when requested.
+

@@ -14,5 +14,64 @@ Expectations from the version 1 of this programme.
 - keep record of sales.
 - keep record of money lent to any person with date and time (seperate accounts of customers should me made).
 - should be able to provide with the full detail of any customer's history.
-- should be able to comeup with the names of customers having dues in descending order when requested.
+- (should be able to comeup with the names of customers having dues in descending order when requested.) 
+        {postponed to version 2}
 
+interface (cli)
+---------------
+
+* main menu :
+
+- The programme should open with a logo.
+- welcome note will get printed on the screen.
+- password is asked along with forget password? and reset password option.
+- then some options will be displayed on the screen such as:
+    - enter customer menu using credentials of customer (mobile number).
+    - print the names of all the customers along with their balance.
+    - print today's transaction.
+    - print the transaction history of some specific date.
+
+* customer menu: (old customers)
+
+- enter any new transaction.
+- view older transactions.
+- view balance.
+- edit credentials.
+
+* customer menu: (new customer)
+
+- enter name
+- enter age (optional)
+- enter address
+- enter email address (optional)
+
+Functions to be written
+------------------------
+
+- logoprinter() : prints out the logo onto the console
+    input : none
+    return : none
+
+- welcome() : prints the welcome note
+    input : none 
+    output : none
+
+- login() : asks for password untill correct password is provided.
+    input : none
+    output : boolean
+
+- keepermenu() : prints the menu available for the shopkeeper to choose from and asks for the choice.
+    input : none
+    output : integer
+
+- customerinterface() : function having all the customer interacting options.
+    input : none
+    output : none
+
+- printhistory() : prints transaction history of any specified date.
+    input : none
+    output : none
+
+-printdatabase() : prints the customer credentials along with their balance.
+    input : none
+    output : none

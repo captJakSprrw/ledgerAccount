@@ -1,4 +1,3 @@
-Date: 31-10-2021
 
 This is just a journal for developing a cli programme called ledgerAccount which was requested by one of my friends.
 I am basically trying to make something useful out of my coding knowledge and this project can be seen as a practice project.
@@ -72,6 +71,20 @@ Functions to be written
     input : none
     output : none
 
--printdatabase() : prints the customer credentials along with their balance.
+- printdatabase() : prints the customer credentials along with their balance.
     input : none
     output : none
+    
+- addcustomer() : adds new customer to the database.
+    input : none (asks customer credentials in the function)
+    output : none
+
+- oldcustomer() : launches new interface to interact with database.
+    input : none
+    output : none
+
+- customermenu() : prints the menu to track customer activities and demands. Takes their response too.
+    input : none
+    output : response
+
+- newentry() : generate new entry for database

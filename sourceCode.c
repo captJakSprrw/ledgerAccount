@@ -4,6 +4,9 @@ int keepermenu();
 void customerinterface();
 void oldcustomer();
 int customermenu();
+void logoprinter();
+void welcome();
+int login();
 
 
 int main()
@@ -60,22 +63,34 @@ void customerinterface()
 void oldcustomer()
 {
     int cond = 1;
+    int id = getid();
+    int response;
+    if (id == 0)
+    {
+        printf("-----New User-------\n");
+        printf("Press:\n1. To add new user\n 2. Return to customer menu.\n");
+        scanf("%d", &response);
+        if(response == 1)
+        {
+            addcustomer();
+        }
+        cond = 0;
+    }
     while(cond)
     {
-        //get customer id from the database to interact with it.
-        switch (customermenu())
+        switch(customermenu())
         {
             case 1:
-                newentry();
+                newentry(id);
                 break;
             case 2:
-                viewhistory();
+                viewhistory(id);
                 break;
             case 3:
-                balance();
+                balance(id);
                 break;
             case 4:
-                editcredential();
+                editcredential(id);
                 break;
             case 5:
                 cond = 0;
@@ -98,4 +113,25 @@ int customermenu()
     printf("Press: \n1. Enter new transaction entry.\n2. View older transactions\n3. View net balance\n4. Edit credentials\n5. Return to customer menu\n.");
     scanf("%d", &response);
     return response;
+}
+
+void logoprinter()
+{
+    printf(" ___________\n");
+    printf("|***********|\n");
+    printf("|***********|\n");
+    printf("|---RecBo---|\n");
+    printf("|***********|\n");
+    printf("|***********|\n");
+    printf("|___________|\n");
+}
+
+void welcome()
+{
+    printf("Welcome to RecBo, a digital ledger.\n");
+}
+
+int login()
+{
+    
 }

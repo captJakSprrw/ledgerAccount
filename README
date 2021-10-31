@@ -87,4 +87,18 @@ Functions to be written
     input : none
     output : response
 
-- newentry() : generate new entry for database
+- newentry(int) : generate new entry for database of given id.
+    input : int 
+    output : none
+
+- viewhistory(int) : prints all the transaction history of id.
+    input : int
+    output : none
+
+- balance(int) : calculates the balance of id.
+    input : int
+    output : none
+
+- editcredentials(int) : presents all the options for editing the credentials of the id.
+    input : int
+    output : none

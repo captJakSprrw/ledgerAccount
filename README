@@ -58,6 +58,14 @@ Functions to be written
 - login() : asks for password untill correct password is provided.
     input : none
     output : boolean
+	internal functions : 
+		- forgotpass() : presents the required options to reset password.
+			input : none
+			output : boolean
+			internal funtions : 
+				- authenticate : authenticates the user by asking the name of developer (captJakSprrw)
+					- input : none
+					- outpit : boolean
 
 - keepermenu() : prints the menu available for the shopkeeper to choose from and asks for the choice.
     input : none

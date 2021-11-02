@@ -9,11 +9,19 @@ void welcome();
 int login();
 int authenticate();
 void forgotpass();
+int getid();
+void addcustomer();
 
 struct chunk
 {
     int len;
     char original[15];
+};
+
+struct idstruct
+{
+    int id;
+    char credential[15];
 };
 
 int main()
@@ -286,3 +294,64 @@ int login()
     return returnval;
 }
 
+int getid()
+{
+    int cond = 1;
+    int id;
+    struct idstruct temp;
+    char inputcred[15];
+    printf("Enter mobile number : ");
+    scanf(" %s", inputcred);
+    inputcred[strcspn(inputcred, "\n")] = 0;
+    FILE * f1 = fopen("id", "r");
+    while((fread(&temp, sizeof(struct idstruct), 1, f1) == 1) && (cond == 1))
+    {
+        printf("entered while loop\n");
+        int i;
+        for(int i = 0; (inputcred[i] != '\0' && temp.credential[i] != '\0'); i++)
+        {
+            printf("enterd for loop %d\n", i);
+            if(inputcred[i] != temp.credential[i])
+            {
+                printf("mismatch found\n");
+                id = 0;
+                cond = 1;
+                break;
+            }
+            printf("match found\n");
+            cond = 0;
+            id = temp.id;
+        }
+        printf("exited for loop with cond = %d\n", cond);
+    }
+    fclose(f1);
+    return id;
+}
+
+void addcustomer()
+{
+    struct chunk idinfo, temp;
+    struct idstruct newid;
+    FILE * f1 = fopen("info", "r");
+    fseek(f1, sizeof(struct chunk), SEEK_SET);
+    fread(&idinfo, sizeof(struct chunk), 1, f1);
+    fclose(f1);
+    FILE * f2 = fopen("id", "a");
+    newid.id = (idinfo.len + 1);
+    printf("Enter mobile number to add : ");
+    scanf(" %s", newid.credential);
+    newid.credential[strcspn(newid.credential, "\n")] = 0;
+    fwrite(&newid, sizeof(struct idstruct), 1, f2);
+    fclose(f2);
+    FILE * f3 = fopen("copy", "a");
+    f1 = fopen("info", "r");
+    fread(&temp, sizeof(struct chunk), 1, f1);
+    fwrite(&temp, sizeof(struct chunk), 1, f3);
+    fseek(f3, sizeof(struct chunk), SEEK_CUR);
+    struct chunk temp2 = {newid.id, "linuxisbetter"};
+    fwrite(&temp2, sizeof(struct chunk), 1, f3);
+    fclose(f1);
+    fclose(f3);
+    remove("info");
+    rename("copy", "info");
+}

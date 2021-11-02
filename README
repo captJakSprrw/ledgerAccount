@@ -91,6 +91,9 @@ Functions to be written
     input : none
     output : none
 
+- getid(): gets the id of the customer as stored in the database which is accessed weth the customercredentials (mobile number).
+
+
 - customermenu() : prints the menu to track customer activities and demands. Takes their response too.
     input : none
     output : response

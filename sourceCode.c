@@ -11,6 +11,9 @@ int authenticate();
 void forgotpass();
 int getid();
 void addcustomer();
+void newentry(int);
+void viewhistory(int);
+int balance(int);
 
 struct chunk
 {
@@ -22,6 +25,21 @@ struct idstruct
 {
     int id;
     char credential[15];
+};
+
+struct custinfo
+{
+        int id;
+        char name[30];
+        char address[50];
+        char email[30];
+        char number[15];
+};
+
+struct transaction
+{
+        char date[10];
+        int amount;
 };
 
 int main()
@@ -355,3 +373,57 @@ void addcustomer()
     remove("info");
     rename("copy", "info");
 }
+
+void newentry(int id)
+{
+        struct transaction newtransact;
+        struct custinfo customer;
+        printf("Enter date : ");
+        scanf(" %[^\n]s", newtransact.date);
+        printf("Enter amount : ");
+        scanf("%d", &newtransact.amount);
+        char filename[10]; 
+        sprintf(filename, "%d", id);
+        FILE * f1 = fopen(filename, "a");   
+        fwrite(&newtransact, sizeof(struct transaction), 1, f1);
+        fclose(f1);
+}
+
+void viewhistory(int id)
+{
+        struct custinfo info;
+        struct transaction hist;
+        char filename[10];
+        sprintf(filename, "%d", id);
+        FILE * f1 = fopen(filename, "r");
+        fread(&info, sizeof(struct custinfo), 1, f1);
+        printf("%d\n", info.id);
+        printf("%s\n", info.name);
+        printf("%s\n", info.number);
+        printf("%s\n", info.email);
+        printf("%s\n", info.address);
+        printf("---------------------------\n");
+        printf("Date : Amount\n");
+        printf("----------------------------\n");
+        while(fread(&hist, sizeof(struct transaction), 1, f1))
+        {
+                printf("%s\n", hist.date);
+                printf("%d\n\n", hist.amount);
+        }
+}
+
+int balance(int id)
+{
+        int sum = 0;
+        struct transaction hist;
+        char filename[10];
+        sprintf(filename, "%d", id);
+        FILE * f1 = fopen(filename, "r");
+        fseek(f1, sizeof(struct custinfo), SEEK_SET);
+        while(fread(&hist, sizeof(struct transaction), 1, f1))
+        {
+                sum += (hist.amount);
+        }
+        printf("The net balance is : %d\n", sum);
+}
+

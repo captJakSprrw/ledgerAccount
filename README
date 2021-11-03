@@ -111,5 +111,6 @@ Functions to be written
     output : none
 
 - editcredentials(int) : presents all the options for editing the credentials of the id.
+		(cannot edit mobile nuber(as it is an id for the customer and data may be lost by changing it)
     input : int
     output : none
